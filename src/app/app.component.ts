@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { userInfo } from 'os';
+import { UrlSegmentGroup } from '@angular/router';
+//import { userInfo } from 'os';
 import {BackendAppService} from './backend-app.service';
-import { UserNotesComponent } from './user-notes/user-notes.component';
-import { UsersComponent } from './users/users.component';
+//import { UserNotesComponent } from './user-notes/user-notes.component';
+//import { UsersComponent } from './users/users.component';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class AppComponent implements OnInit{
 constructor(private backendappService: BackendAppService) {}
 
 ngOnInit(){
-  this.backendappService.getUsers().subscribe((data) => {console.log(data);})
+  //this.backendappService.getUsers().subscribe((user) => {console.log(user);})
 
 
   // this.backendappService.getNotes().subscribe((data) => {console.log(data);})

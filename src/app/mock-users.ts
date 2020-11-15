@@ -1,5 +1,6 @@
-import { User as users } from './user';
+import {User} from './user';
 
-export const USERS: users[] = [
-  { id: 1, username: 'Dimitri' },
-  { id: 2, username: 'Lies' }];
+export const USERS: User[] = [
+    { id: 1, username: 'Dimitri' },
+    { id: 1, username: 'Lies' }
+]

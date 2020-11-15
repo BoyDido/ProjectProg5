@@ -1,25 +1,33 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { User } from './user';
-import { USERS } from './mock-users';
+import { USERS } from './mock-users'
+import { MessageService } from './message.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root'})
 export class BackendAppService {
 
   
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private messageService: MessageService) { }
     
-    // getHeroes(): User[] {
-    //   return USERS;
-    // }
-    
-
-    getUsers =() => {
-      return this.http.get('https://glitch.com/~phantom-cord-perch') 
+    getUsers(): Observable<User[]> {
+      // TODO: send the message _after_ fetching the heroes
+      this.http.get('https://glitch.com/~phantom-cord-perch') 
+      this.messageService.add('BackendAppService: fetched users');
+      return of(USERS);
     }
+    
+    getUser(id: number): Observable<User> {
+      // TODO: send the message _after_ fetching the hero
+      this.http.get('https://glitch.com/~phantom-cord-perch') 
+      this.messageService.add(`BackendAppService: fetched user id=${id}`);
+      return of(USERS.find(user => user.id === id));
+    }
+
+    // getUsers =() => {
+    //   return this.http.get('https://glitch.com/~phantom-cord-perch') 
+    // }
 
     postUsers(user: User):Observable<User> {
       return this.http.post<User>('https://glitch.com/~phantom-cord-perch', user);

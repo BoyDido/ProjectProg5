@@ -1,24 +1,25 @@
 <h2>My Users</h2>
 
-<ul class="users">
-  <li *ngFor="let user of users" 
-    (click)="onSelect(user)">
-    <span class="badge">{{user.id}}</span> {{user.username}} 
-    <button class="delete" title="delete user" (click)="delete(user)">x</button>
+<ul class='users'>
+  <li *ngFor="let user of users" >
+    <a routerLink="/notes/{{user.id}}">
+      <span class="badge">{{user.id}}</span> {{user.username}} 
+    </a>
   </li>
 </ul>
 
-<app-user-notes [user]="selectedUser"></app-user-notes>
+
+<!-- <app-user-notes [user]="selectedUser"></app-user-notes>
 
 <div>
     <label>User name:
       <input #userName />
     </label>
-    <!-- (click) passes input value to add() and then clears the input -->
-    <button (click)="add(userName.value); userName.value=''">
+    (click) passes input value to add() and then clears the input -->
+    <!-- <button (click)="add(userName.value); userName.value=''">
       add
     </button>
-  </div>
+  </div> -->
 
 
  
