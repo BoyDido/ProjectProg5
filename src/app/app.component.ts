@@ -12,20 +12,15 @@ import { UsersComponent } from './users/users.component';
 })
 export class AppComponent implements OnInit{
   title = 'ProjectProg5';
-  username = new UserNotesComponent(this.username);
-  // userName : string;
-  // adjustNote : string;
-  // note : any;
-  // user: any;
-
+  
+  
  
 
 constructor(private backendappService: BackendAppService) {}
 
 ngOnInit(){
   this.backendappService.getUsers().subscribe((data) => {console.log(data);})
-  this.backendappService.postUsers(username).subscribe(user => this.user.push(user));
-  // this.backendappService.deleteUser(this.user.id).subscribe();
+
 
   // this.backendappService.getNotes().subscribe((data) => {console.log(data);})
   // this.backendappService.postNotes(this.note).subscribe(note => this.note.push(note));

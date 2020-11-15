@@ -9,6 +9,7 @@ import { USERS } from './mock-users';
 })
 export class BackendAppService {
 
+  
     constructor(private http: HttpClient) { }
     
     // getHeroes(): User[] {
@@ -17,11 +18,11 @@ export class BackendAppService {
     
 
     getUsers =() => {
-      return this.http.get('https://glitch.com/~phantom-cord-perch')
+      return this.http.get('https://glitch.com/~phantom-cord-perch') 
     }
 
-    postUsers(user: any):Observable<any> {
-      return this.http.post('https://glitch.com/~phantom-cord-perch', user)
+    postUsers(user: User):Observable<User> {
+      return this.http.post<User>('https://glitch.com/~phantom-cord-perch', user);
     }
     
     deleteUser(id: number): Observable<{}>{

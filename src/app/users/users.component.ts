@@ -9,21 +9,31 @@ import { User } from '../user';
 })
 export class UsersComponent implements OnInit {
   users : User[];
-   selectedUser: User;
-username : string;
+  selectedUser: User;
+  username : string;
 
 onSelect(user: User): void {
   this.selectedUser = user;
 }
 
-add(name: string): void {
-  name = name.trim();
-if (!name) {return;}}
+constructor(private backendappService: BackendAppService) { }
 
-  constructor(private BackendAppService: BackendAppService) { }
+add(username: string): void {
+  username = username.trim();
+  if (!username) { return; }
+  this.backendappService.postUsers({ username } as User)
+    .subscribe(user => {
+      this.users.push(user);
+    });
+}
+  
+delete(user: User): void {
+  this.users = this.users.filter(u => u !== user);
+  this.backendappService.deleteUser(user.id).subscribe();
+}
 
- 
-  ngOnInit(): void {
+ngOnInit(): void {
+  this.backendappService.getUsers().subscribe((data) => {console.log(data);})
   }
 
 

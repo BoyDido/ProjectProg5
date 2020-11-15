@@ -3,7 +3,8 @@
 <ul class="users">
   <li *ngFor="let user of users" 
     (click)="onSelect(user)">
-    <span class="badge">{{user.id}}</span> {{user.username}}
+    <span class="badge">{{user.id}}</span> {{user.username}} 
+    <button class="delete" title="delete user" (click)="delete(user)">x</button>
   </li>
 </ul>
 
@@ -18,3 +19,6 @@
       add
     </button>
   </div>
+
+
+ 
