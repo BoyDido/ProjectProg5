@@ -4,6 +4,7 @@ import { User } from '../user';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import {BackendAppService} from '../backend-app.service';
+import { Note } from '../notes';
 
 @Component({
   selector: 'app-user-notes',
@@ -13,6 +14,7 @@ import {BackendAppService} from '../backend-app.service';
 
 export class UserNotesComponent implements OnInit {
   user: User;
+  note: Note;
   
   constructor(  private route: ActivatedRoute, private backendappService: BackendAppService,
     private location: Location) { }
@@ -27,8 +29,25 @@ export class UserNotesComponent implements OnInit {
       .subscribe(user => this.user.id = id);
   }
 
+  getNotes(): void {
+    this.backendappService.getNotes().subscribe((data) => {console.log(data);})
+    }
+
+  getNote(): void {
+      const id = +this.route.snapshot.paramMap.get('id'); // nog GetNoteById inbrengen in glitch
+      this.backendappService.getNotes()
+        .subscribe(note => this.note.id = id);
+    }
+
   goBack(): void {
     this.location.back();
   }
+
+  save(): void {
+    this.backendappService.updateUser(this.user)
+      .subscribe(() => this.goBack());
+  }
+
+
 
 }

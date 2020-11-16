@@ -20,11 +20,11 @@ constructor(private backendappService: BackendAppService) { }
   
 ngOnInit(): void {
     this.getUsers();
-    //this.backendappService.getUsers().subscribe((data) => {console.log(data);})
-  }
+    }
   
 getUsers(): void {
-    this.backendappService.getUsers().subscribe(users => this.users = users);
+  this.backendappService.getUsers().subscribe((data) => {console.log(data);})
+    //this.backendappService.getUsers().subscribe(users => this.users = users);
   }
 
 
@@ -32,8 +32,7 @@ getUsers(): void {
     username = username.trim();
     if (!username) { return; }
     this.backendappService.postUsers({ username } as User)
-      .subscribe(user => {
-        this.users.push(user);
+      .subscribe(user => {this.users.push(user);
       });
     }
     
